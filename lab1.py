@@ -11,7 +11,9 @@ URL = 'http://www.star.nesdis.noaa.gov/smcd/emb/vci/gvix/G04/ts_L1/ByProvince/Me
 PATH = os.path.dirname(os.path.abspath(__file__))
 
 data_path = pjoin(PATH, 'data')
+new_data_path = pjoin(PATH, 'new_data')
 os.mkdir(data_path)
+os.mkdir(new_data_path)
 
 logging.basicConfig(level=logging.INFO)
 
@@ -40,7 +42,7 @@ new_regions = {
 "Poltava" : 15,
 "Rivne": 16,
 "Sumy" : 17,
-"Ternopil" : 18,
+"Ternopil'" : 18,
 "Kharkiv" : 19,
 "Kherson" : 20,
 "Khmel'nyts'kyy" : 21,
@@ -77,6 +79,10 @@ for index in xrange(1, 28):
     vhi_url = urlopen(url)
     filename = 'vhi_id_%02d_%s.csv'%(index, datetime.now().strftime("%d.%m.%Y_%I:%M"))
     with open(pjoin(data_path, filename), 'ws') as out:
+        out.write(vhi_url.read())
+    vhi_url = urlopen(url)
+    new_filename = 'vhi_id_%02d_%s.csv'%(new_regions[regions[index-1]], datetime.now().strftime("%d.%m.%Y_%I:%M"))
+    with open(pjoin(new_data_path, filename), 'ws') as out:
         out.write(vhi_url.read())
     logging.info('File %s was created'%filename)
 
