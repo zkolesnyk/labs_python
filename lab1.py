@@ -11,6 +11,9 @@ import os
 URL = 'http://www.star.nesdis.noaa.gov/smcd/emb/vci/gvix/G04/ts_L1/ByProvince/Mean/L1_Mean_UKR.R%02d.txt'
 PATH = os.path.dirname(os.path.abspath(__file__))
 
+data_path = pjoin(PATH, 'data')
+os.mkdir(data_path)
+
 logging.basicConfig(level=logging.INFO)
 
 def createFrame():
@@ -31,7 +34,7 @@ for i in xrange(1, 3):
     logging.info('Downloading: %s'%url)
     vhi_url = urlopen(url)
     filename = 'vhi_id_%02d_%s.csv'%(i, datetime.now().strftime("%d.%m.%Y_%I:%M"))
-    with open(pjoin(PATH, filename), 'ws') as out:
+    with open(pjoin(data_path, filename), 'ws') as out:
         out.write(vhi_url.read())
     logging.info('File %s was created'%filename)
 
