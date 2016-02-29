@@ -17,7 +17,7 @@ os.mkdir(data_path)
 logging.basicConfig(level=logging.INFO)
 
 def createFrame():
-    list = glob('*.csv')
+    list = glob(pjoin(data_path, '*.csv'))
     list.sort()
     for filename in list:
         data = read_csv(filename, index_col=False, header=1)
