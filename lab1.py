@@ -83,7 +83,6 @@ for index in xrange(1, 28):
     logging.info('File %s was created'%filename)
 
 create_frame(data_path)
-change_index()
 
 print '==='
 logging.info('All regions are downloaded')
