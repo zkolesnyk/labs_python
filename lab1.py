@@ -30,13 +30,13 @@ def create_frame(path):
             '%Area_VHI_LESS_35':'AreaLess35'
         })
 
-for i in xrange(1, 3):
-    url = URL%i
-    if i in [12, 20]:
+for index in xrange(1, 3):
+    url = URL%index
+    if index in [12, 20]:
         continue
     logging.info('Downloading: %s'%url)
     vhi_url = urlopen(url)
-    filename = 'vhi_id_%02d_%s.csv'%(i, datetime.now().strftime("%d.%m.%Y_%I:%M"))
+    filename = 'vhi_id_%02d_%s.csv'%(index, datetime.now().strftime("%d.%m.%Y_%I:%M"))
     with open(pjoin(data_path, filename), 'ws') as out:
         out.write(vhi_url.read())
     logging.info('File %s was created'%filename)
