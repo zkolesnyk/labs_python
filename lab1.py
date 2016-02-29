@@ -15,10 +15,10 @@ def createFolder(path):
     os.chdir(path)
     folder = 'data'
     os.mkdir(folder)
-    return '%s/%s'%(path, folder)
+    return pjoin(path, folder)
 
 path = os.path.dirname(os.path.abspath(__file__))
-folder = createFolder(path) + '/'
+folder = createFolder(path)
 
 def createFrame():
     data = read_csv(filename, index_col=False, header=1)
