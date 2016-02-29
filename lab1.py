@@ -24,35 +24,35 @@ regions = [ "Cherkasy", "Chernihiv", "Chernivtsi", "Crimea",
 ]
 
 new_regions = {
-'Vinnytsya' : 1,
-'Volyn' : 2,
+"Vinnytsya" : 1,
+"Volyn" : 2,
 "Dnipropetrovs'k" : 3,
 "Donets'k" : 4,
-'Zhytomyr': 5,
+"Zhytomyr": 5,
 "Zakarpats'ka" : 6,
-'Zaporizhzhya' : 7,
+"Zaporizhzhya" : 7,
 "Ivano-Frankivs'k" : 8,
-'Kiev' : 9,
-'Kirovohrad' : 10,
+"Kiev" : 9,
+"Kirovohrad" : 10,
 "Luhans'k" : 11,
 "L'viv" : 12,
-'Mykolayiv' : 13,
-'Odessa' : 14,
-'Poltava' : 15,
-'Rivne': 16,
-'Sumy' : 17,
-"Ternopil'" : 18,
-'Kharkiv' : 19,
-'Kherson' : 20,
+"Mykolayiv" : 13,
+"Odessa" : 14,
+"Poltava" : 15,
+"Rivne": 16,
+"Sumy" : 17,
+"Ternopil"" : 18,
+"Kharkiv" : 19,
+"Kherson" : 20,
 "Khmel'nyts'kyy" : 21,
-'Cherkasy' : 22,
-'Chernivtsi' : 23,
-'Chernihiv' : 24,
-'Crimea' : 25,
+"Cherkasy" : 22,
+"Chernivtsi" : 23,
+"Chernihiv" : 24,
+"Crimea" : 25,
 }
 
 def change_index():
-    
+
     pass
 
 def create_frame(path):
