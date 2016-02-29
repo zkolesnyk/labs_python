@@ -2,7 +2,6 @@
 from datetime import datetime, date, time
 from urllib2 import urlopen
 from pandas import read_csv
-from pandas import DataFrame
 from os.path import join as pjoin
 from glob import glob
 import logging
