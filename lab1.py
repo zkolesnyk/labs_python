@@ -21,7 +21,7 @@ regions = [ "Cherkasy", "Chernihiv", "Chernivtsi", "Crimea",
 "Dnipropetrovs'k", "Donets'k", "Ivano-Frankivs'k", "Kharkiv",
 "Kherson", "Khmel'nyts'kyy", "Kiev", "Kiev City", "Kirovohrad",
 "Luhans'k", "L'viv", "Mykolayiv", "Odessa", "Poltava", "Rivne",
-"Sevastopol'", "Sumy", "Ternopil'", "Transcarpathia",
+"Sevastopol'", "Sumy", "Ternopil'", "Zakarpats'ka",
 "Vinnytsya", "Volyn", "Zaporizhzhya", "Zhytomyr" ]
 
 new_regions = {
@@ -52,10 +52,6 @@ new_regions = {
 "Crimea" : 25
 }
 
-def change_index():
-    for i in regions:
-        new_regions[regions[i-1]]
-
 def create_frame(path):
     list = glob(pjoin(path, '*.csv'))
     list.sort()
@@ -82,7 +78,7 @@ for index in xrange(1, 28):
         out.write(vhi_url.read())
     vhi_url = urlopen(url)
     new_filename = 'vhi_id_%02d_%s.csv'%(new_regions[regions[index-1]], datetime.now().strftime("%d.%m.%Y_%I:%M"))
-    with open(pjoin(new_data_path, filename), 'ws') as out:
+    with open(pjoin(new_data_path, new_filename), 'ws') as out:
         out.write(vhi_url.read())
     logging.info('File %s was created'%filename)
 
