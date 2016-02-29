@@ -4,6 +4,7 @@ from urllib2 import urlopen
 from pandas import read_csv
 from pandas import DataFrame
 from os.path import join as pjoin
+from glob import glob
 import logging
 import os
 
@@ -21,12 +22,16 @@ path = os.path.dirname(os.path.abspath(__file__))
 folder = createFolder(path)
 
 def createFrame():
-    data = read_csv(filename, index_col=False, header=1)
-    c = data.rename(columns = {
-        'year':'Рік',
-        'week':'Тиждень'
-    })
-    print c[:1]
+    os.chdir(pjoin(path, folder))
+    list = glob('*.csv')
+    list.sort()
+    for filename in list:
+        data = read_csv(filename, index_col=False, header=1)
+        print filename
+    # c = data.rename(columns = {
+    #     'year':'Рік',
+    #     'week':'Тиждень'
+    # })
 
 for i in xrange(1, 3):
     url = URL%i
@@ -38,6 +43,8 @@ for i in xrange(1, 3):
     with open(pjoin(folder, filename), 'ws') as out:
         out.write(vhi_url.read())
     logging.info('File %s was created'%filename)
+
+createFrame()
 
 print '==='
 logging.info('All regions are downloaded')
