@@ -20,8 +20,7 @@ regions = [ "Cherkasy", "Chernihiv", "Chernivtsi", "Crimea",
 "Kherson", "Khmel'nyts'kyy", "Kiev", "Kiev City", "Kirovohrad",
 "Luhans'k", "L'viv", "Mykolayiv", "Odessa", "Poltava", "Rivne",
 "Sevastopol'", "Sumy", "Ternopil'", "Transcarpathia",
-"Vinnytsya", "Volyn", "Zaporizhzhya", "Zhytomyr"
-]
+"Vinnytsya", "Volyn", "Zaporizhzhya", "Zhytomyr" ]
 
 new_regions = {
 "Vinnytsya" : 1,
@@ -41,19 +40,19 @@ new_regions = {
 "Poltava" : 15,
 "Rivne": 16,
 "Sumy" : 17,
-"Ternopil"" : 18,
+"Ternopil" : 18,
 "Kharkiv" : 19,
 "Kherson" : 20,
 "Khmel'nyts'kyy" : 21,
 "Cherkasy" : 22,
 "Chernivtsi" : 23,
 "Chernihiv" : 24,
-"Crimea" : 25,
+"Crimea" : 25
 }
 
 def change_index():
-
-    pass
+    for i in regions:
+        new_regions[regions[i-1]]
 
 def create_frame(path):
     list = glob(pjoin(path, '*.csv'))
