@@ -58,13 +58,13 @@ def create_frame(path):
     for filename in list:
         data = read_csv(filename, index_col=False, header=1)
         print data.rename(columns = {
-        'year':'Year',
-        'week':'Week',
-        'VCI':'VegetationConditionIndex',
-        'TCI':'ThermalConditionIndex',
-        'VHI':'VegetationHealthIndex',
-        '%Area_VHI_LESS_15':'AreaLess15',
-        '%Area_VHI_LESS_35':'AreaLess35'
+            'year':'Year',
+            'week':'Week',
+            'VCI':'VegetationConditionIndex',
+            'TCI':'ThermalConditionIndex',
+            'VHI':'VegetationHealthIndex',
+            '%Area_VHI_LESS_15':'AreaLess15',
+            '%Area_VHI_LESS_35':'AreaLess35'
         })
 
 for index in xrange(1, 28):
