@@ -6,6 +6,8 @@ from pandas import DataFrame
 import logging
 import os
 
+url = 'http://www.star.nesdis.noaa.gov/smcd/emb/vci/gvix/G04/ts_L1/ByProvince/Mean/L1_Mean_UKR.R%02d.txt'%i
+
 logging.basicConfig(level=logging.INFO)
 
 def createFolder(path):
@@ -29,7 +31,6 @@ def createFrame():
 for i in xrange(1, 3):
     if i in [12, 20]:
         continue
-    url = 'http://www.star.nesdis.noaa.gov/smcd/emb/vci/gvix/G04/ts_L1/ByProvince/Mean/L1_Mean_UKR.R%02d.txt'%i
     logging.info('Downloading: %s'%url)
     vhi_url = urlopen(url)
     filename = 'vhi_id_%02d_%s.csv'%(i, datetime.now().strftime("%d.%m.%Y_%I:%M"))
@@ -39,4 +40,4 @@ for i in xrange(1, 3):
     logging.info('File %s was created'%filename)
 
 print '==='
-logging.info('All regions is downloaded')
+logging.info('All regions are downloaded')
