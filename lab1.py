@@ -15,6 +15,46 @@ os.mkdir(data_path)
 
 logging.basicConfig(level=logging.INFO)
 
+regions = [ "Cherkasy", "Chernihiv", "Chernivtsi", "Crimea",
+"Dnipropetrovs'k", "Donets'k", "Ivano-Frankivs'k", "Kharkiv",
+"Kherson", "Khmel'nyts'kyy", "Kiev", "Kiev City", "Kirovohrad",
+"Luhans'k", "L'viv", "Mykolayiv", "Odessa", "Poltava", "Rivne",
+"Sevastopol'", "Sumy", "Ternopil'", "Transcarpathia",
+"Vinnytsya", "Volyn", "Zaporizhzhya", "Zhytomyr"
+]
+
+new_regions = {
+'Vinnytsya' : 1,
+'Volyn' : 2,
+"Dnipropetrovs'k" : 3,
+"Donets'k" : 4,
+'Zhytomyr': 5,
+"Zakarpats'ka" : 6,
+'Zaporizhzhya' : 7,
+"Ivano-Frankivs'k" : 8,
+'Kiev' : 9,
+'Kirovohrad' : 10,
+"Luhans'k" : 11,
+"L'viv" : 12,
+'Mykolayiv' : 13,
+'Odessa' : 14,
+'Poltava' : 15,
+'Rivne': 16,
+'Sumy' : 17,
+"Ternopil'" : 18,
+'Kharkiv' : 19,
+'Kherson' : 20,
+"Khmel'nyts'kyy" : 21,
+'Cherkasy' : 22,
+'Chernivtsi' : 23,
+'Chernihiv' : 24,
+'Crimea' : 25,
+}
+
+def change_index():
+    
+    pass
+
 def create_frame(path):
     list = glob(pjoin(path, '*.csv'))
     list.sort()
@@ -30,7 +70,7 @@ def create_frame(path):
             '%Area_VHI_LESS_35':'AreaLess35'
         })
 
-for index in xrange(1, 3):
+for index in xrange(1, 28):
     url = URL%index
     if index in [12, 20]:
         continue
@@ -42,6 +82,7 @@ for index in xrange(1, 3):
     logging.info('File %s was created'%filename)
 
 create_frame(data_path)
+change_index()
 
 print '==='
 logging.info('All regions are downloaded')
