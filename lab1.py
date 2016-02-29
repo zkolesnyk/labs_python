@@ -16,16 +16,15 @@ os.mkdir(data_path)
 
 logging.basicConfig(level=logging.INFO)
 
-def createFrame():
-    list = glob(pjoin(data_path, '*.csv'))
+def create_frame(path):
+    list = glob(pjoin(path, '*.csv'))
     list.sort()
     for filename in list:
         data = read_csv(filename, index_col=False, header=1)
-        print filename
-    # c = data.rename(columns = {
-    #     'year':'Рік',
-    #     'week':'Тиждень'
-    # })
+        c = data.rename(columns = {
+            'year':'Рік',
+            'week':'Тиждень'
+        })
 
 for i in xrange(1, 3):
     url = URL%i
@@ -38,7 +37,7 @@ for i in xrange(1, 3):
         out.write(vhi_url.read())
     logging.info('File %s was created'%filename)
 
-createFrame()
+create_frame(data_path)
 
 print '==='
 logging.info('All regions are downloaded')
