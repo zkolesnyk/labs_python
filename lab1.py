@@ -17,12 +17,11 @@ os.mkdir(new_data_path)
 
 logging.basicConfig(level=logging.INFO)
 
-regions = [ "Cherkasy", "Chernihiv", "Chernivtsi", "Crimea",
-"Dnipropetrovs'k", "Donets'k", "Ivano-Frankivs'k", "Kharkiv",
-"Kherson", "Khmel'nyts'kyy", "Kiev", "Kiev City", "Kirovohrad",
-"Luhans'k", "L'viv", "Mykolayiv", "Odessa", "Poltava", "Rivne",
-"Sevastopol'", "Sumy", "Ternopil'", "Zakarpats'ka",
-"Vinnytsya", "Volyn", "Zaporizhzhya", "Zhytomyr" ]
+regions = [ "Cherkasy", "Chernihiv", "Chernivtsi", "Crimea", "Dnipropetrovs'k",
+"Donets'k", "Ivano-Frankivs'k", "Kharkiv","Kherson", "Khmel'nyts'kyy", "Kiev",
+"Kiev City", "Kirovohrad", "Luhans'k", "L'viv", "Mykolayiv", "Odessa", "Poltava",
+"Rivne", "Sevastopol'", "Sumy", "Ternopil'", "Zakarpats'ka", "Vinnytsya", "Volyn",
+"Zaporizhzhya", "Zhytomyr" ]
 
 new_regions = {
 "Vinnytsya"         : 1,
@@ -53,9 +52,7 @@ new_regions = {
 }
 
 def create_frame(path):
-    list = glob(pjoin(path, '*.csv'))
-    list.sort()
-    for filename in list:
+    for filename in sorted(glob(pjoin(path, '*.csv'))):
         data = read_csv(filename, index_col=False, header=1)
         print data.rename(columns = {
             'year':'Year',
