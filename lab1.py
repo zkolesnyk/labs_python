@@ -51,6 +51,15 @@ new_regions = {
 "Crimea"            : 25
 }
 
+def vhi_min_max(path, year):
+    pass
+
+def vhi_extreme(path):
+    pass
+
+def vhi_moderate(path):
+    pass
+
 def create_frame(path):
     for filename in sorted(glob(pjoin(path, '*.csv'))):
         data = read_csv(filename, index_col=False, header=1)
