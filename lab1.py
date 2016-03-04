@@ -79,10 +79,6 @@ for index in xrange(1, 28):
         continue
     logging.info('Downloading: %s'%url)
     vhi_url = urlopen(url)
-    filename = 'vhi_id_%02d_%s.csv'%(index, datetime.now().strftime("%d.%m.%Y_%I:%M"))
-    with open(pjoin(data_path, filename), 'ws') as out:
-        out.write(vhi_url.read())
-    vhi_url = urlopen(url)
     new_filename = 'vhi_id_%02d_%s.csv'%(new_regions[regions[index-1]], datetime.now().strftime("%d.%m.%Y_%I:%M"))
     with open(pjoin(new_data_path, new_filename), 'ws') as out:
         out.write(vhi_url.read())
