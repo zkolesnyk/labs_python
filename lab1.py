@@ -70,6 +70,8 @@ def vhi_extreme(path):
 def vhi_moderate(path):
     pass
 
+def rename(index):
+    return 'vhi_id_%02d_%s.csv'%(new_regions[regions[index-1]], datetime.now().strftime("%d.%m.%Y_%I:%M"))
 
 def download_files():
     os.mkdir(new_data_path)
