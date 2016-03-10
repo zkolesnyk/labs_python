@@ -62,7 +62,14 @@ def create_frame(path):
     return data
 
 def vhi_min_max(path, year):
-    pass
+    regex = pjoin(new_data_path, 'vhi_id_%s*'%new_regions[regions[path-1]])
+    df = create_frame(glob(regex)[0])
+    df = df.loc[df['Year'] == year]['VegetationHealthIndex']
+    print 'VHI за %s рік (%s область):'%(str(year), new_regions[regions[path-1]])
+    for number, week in enumerate(df):
+        print '%s. %s'%(str(number+1), str(week))
+    print 'Max VHI = %s'%str(df.max())
+    print 'Min VHI = %s'%str(df.min())
 
 def vhi_extreme(path):
     pass
