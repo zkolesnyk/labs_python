@@ -11,7 +11,6 @@ URL = 'http://www.star.nesdis.noaa.gov/smcd/emb/vci/gvix/G04/ts_L1/ByProvince/Me
 PATH = os.path.dirname(os.path.abspath(__file__))
 
 new_data_path = pjoin(PATH, 'new_data')
-os.mkdir(new_data_path)
 
 logging.basicConfig(level=logging.INFO)
 
@@ -71,16 +70,17 @@ def create_frame(path):
             '%Area_VHI_LESS_35':'AreaLess35'
         })
 
-for index in xrange(1, 28):
-    url = URL%index
-    if index in [12, 20]:
-        continue
-    logging.info('Downloading: %s'%url)
-    vhi_url = urlopen(url)
-    new_filename = 'vhi_id_%02d_%s.csv'%(new_regions[regions[index-1]], datetime.now().strftime("%d.%m.%Y_%I:%M"))
-    with open(pjoin(new_data_path, new_filename), 'ws') as out:
-        out.write(vhi_url.read())
-    logging.info('File %s was created'%filename)
+def download_files():
+    os.mkdir(new_data_path)
+    for index in xrange(1, 28):
+        url = URL%index
+        if index in [12, 20]:
+            continue
+        logging.info('Downloading: %s'%url)
+        vhi_url = urlopen(url)
+        with open(pjoin(new_data_path, rename(index)), 'ws') as out:
+            out.write(vhi_url.read())
+        logging.info('File %s was created'%rename(index))
 
 
 print '==='
