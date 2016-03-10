@@ -10,9 +10,7 @@ import os
 URL = 'http://www.star.nesdis.noaa.gov/smcd/emb/vci/gvix/G04/ts_L1/ByProvince/Mean/L1_Mean_UKR.R%02d.txt'
 PATH = os.path.dirname(os.path.abspath(__file__))
 
-data_path = pjoin(PATH, 'data')
 new_data_path = pjoin(PATH, 'new_data')
-os.mkdir(data_path)
 os.mkdir(new_data_path)
 
 logging.basicConfig(level=logging.INFO)
@@ -84,7 +82,6 @@ for index in xrange(1, 28):
         out.write(vhi_url.read())
     logging.info('File %s was created'%filename)
 
-create_frame(data_path)
 
 print '==='
 logging.info('All regions are downloaded')
