@@ -48,6 +48,19 @@ new_regions = {
 "Crimea"            : 25
 }
 
+def create_frame(path):
+    data = read_csv(path, index_col=False, header=1)
+    data.rename(columns = {
+        'year':'Year',
+        'week':'Week',
+        'VCI':'VegetationConditionIndex',
+        'TCI':'ThermalConditionIndex',
+        'VHI':'VegetationHealthIndex',
+        '%Area_VHI_LESS_15':'AreaLess15',
+        '%Area_VHI_LESS_35':'AreaLess35'
+    }, inplace = True)
+    return data
+
 def vhi_min_max(path, year):
     pass
 
@@ -57,18 +70,6 @@ def vhi_extreme(path):
 def vhi_moderate(path):
     pass
 
-def create_frame(path):
-    for filename in sorted(glob(pjoin(path, '*.csv'))):
-        data = read_csv(filename, index_col=False, header=1)
-        print data.rename(columns = {
-            'year':'Year',
-            'week':'Week',
-            'VCI':'VegetationConditionIndex',
-            'TCI':'ThermalConditionIndex',
-            'VHI':'VegetationHealthIndex',
-            '%Area_VHI_LESS_15':'AreaLess15',
-            '%Area_VHI_LESS_35':'AreaLess35'
-        })
 
 def download_files():
     os.mkdir(new_data_path)
