@@ -105,11 +105,10 @@ def download_files():
         with open(pjoin(new_data_path, rename(index)), 'ws') as out:
             out.write(vhi_url.read())
         logging.info('File %s was created'%rename(index))
+    print '==='
+    logging.info('All regions are downloaded')
 
 # download_files()
 vhi_min_max(1, 2000)
 vhi_extreme(1, 10)
 vhi_moderate(2, 30)
-
-print '==='
-logging.info('All regions are downloaded')
