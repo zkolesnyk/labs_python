@@ -76,11 +76,7 @@ def vhi_min_max(path, year):
 def vhi_extreme(path, percent):
     regex = pjoin(new_data_path, 'vhi_id_%s*'%new_regions[regions[path-1]])
     df = create_frame(glob(regex)[0])
-    df = df.loc[df['AreaLess15'] > percent]['Year']
-    #print df
-    df = set(df)
-    years = list(df)[1:]
-    for path, year in enumerate(years):
+    years = list(set(df.loc[df['AreaLess15'] > percent]['Year']))[1:]
     print 'Роки з екстримальними посухами, які торкнулися більше %s'%percent,
     print 'відсотків площі (%s область):'%new_regions[regions[path-1]]
         print '%s. %s'%(index + 1, year)
@@ -88,11 +84,7 @@ def vhi_extreme(path, percent):
 def vhi_moderate(path, percent):
     regex = pjoin(new_data_path, 'vhi_id_%s*'%new_regions[regions[path-1]])
     df = create_frame(glob(regex)[0])
-    df = df.loc[df['AreaLess35'] > percent]['Year']
-    print df
-    df = set(df)
-    years = list(df)[1:]
-    for path, year in enumerate(years):
+    years = list(set(df.loc[df['AreaLess35'] > percent]['Year']))[1:]
     print 'Роки з помірними посухами, які торкнулися більше %s'%percent,
     print 'відсотків площі (%s область):'%new_regions[regions[path-1]]
         print '%s. %s'%(index + 1, year)
