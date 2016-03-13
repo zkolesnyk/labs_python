@@ -79,6 +79,7 @@ def vhi_extreme(path, percent):
     years = list(set(df.loc[df['AreaLess15'] > percent]['Year']))[1:]
     print 'Роки з екстримальними посухами, які торкнулися більше %s'%percent,
     print 'відсотків площі (%s область):'%new_regions[regions[path-1]]
+    for index, year in enumerate(years):
         print '%s. %s'%(index + 1, year)
 
 def vhi_moderate(path, percent):
@@ -87,6 +88,7 @@ def vhi_moderate(path, percent):
     years = list(set(df.loc[df['AreaLess35'] > percent]['Year']))[1:]
     print 'Роки з помірними посухами, які торкнулися більше %s'%percent,
     print 'відсотків площі (%s область):'%new_regions[regions[path-1]]
+    for index, year in enumerate(years):
         print '%s. %s'%(index + 1, year)
 
 def rename(index):
