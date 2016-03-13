@@ -7,6 +7,7 @@ from glob import glob
 import logging
 import os
 
+DATE = datetime.now().strftime("%d.%m.%Y_%I.%M")
 URL = 'http://www.star.nesdis.noaa.gov/smcd/emb/vci/gvix/G04/ts_L1/ByProvince/Mean/L1_Mean_UKR.R%02d.txt'
 PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -97,7 +98,7 @@ def vhi_moderate(path, percent):
     print 'відсотків площі (%s область):'%new_regions[regions[path-1]]
 
 def rename(index):
-    return 'vhi_id_%02d_%s.csv'%(new_regions[regions[index-1]], datetime.now().strftime("%d.%m.%Y_%I.%M"))
+    return 'vhi_id_%02d_%s.csv'%(new_regions[regions[index-1]], DATE)
 
 def download_files():
     os.mkdir(new_data_path)
