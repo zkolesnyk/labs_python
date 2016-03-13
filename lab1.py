@@ -69,9 +69,9 @@ def vhi_min_max(path, year):
     print 'VegetationHealthIndex за %s рік'%year,
     print '(%s область):'%new_regions[regions[path-1]]
     for number, week in enumerate(df):
-        print '%s. %s'%(str(number+1), str(week))
-    print 'Max VHI = %s'%str(df.max())
-    print 'Min VHI = %s'%str(df.min())
+        print '%s. %s'%(number + 1, week)
+    print 'Max VegetationHealthIndex = %s'%df.max()
+    print 'Min VegetationHealthIndex = %s'%df.min()
 
 def vhi_extreme(path, percent):
     regex = pjoin(new_data_path, 'vhi_id_%s*'%new_regions[regions[path-1]])
@@ -81,9 +81,9 @@ def vhi_extreme(path, percent):
     df = set(df)
     years = list(df)[1:]
     for path, year in enumerate(years):
-        print '%s. %s'%(str(path+1), str(year))
     print 'Роки з екстримальними посухами, які торкнулися більше %s'%percent,
     print 'відсотків площі (%s область):'%new_regions[regions[path-1]]
+        print '%s. %s'%(index + 1, year)
 
 def vhi_moderate(path, percent):
     regex = pjoin(new_data_path, 'vhi_id_%s*'%new_regions[regions[path-1]])
@@ -93,9 +93,9 @@ def vhi_moderate(path, percent):
     df = set(df)
     years = list(df)[1:]
     for path, year in enumerate(years):
-        print '%s. %s'%(str(path+1), str(year))
     print 'Роки з помірними посухами, які торкнулися більше %s'%percent,
     print 'відсотків площі (%s область):'%new_regions[regions[path-1]]
+        print '%s. %s'%(index + 1, year)
 
 def rename(index):
     return 'vhi_id_%02d_%s.csv'%(new_regions[regions[index-1]], DATE)
