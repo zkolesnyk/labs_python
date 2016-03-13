@@ -94,7 +94,7 @@ def vhi_moderate(path, percent):
         print '%s. %s'%(str(path+1), str(year))
 
 def rename(index):
-    return 'vhi_id_%02d_%s.csv'%(new_regions[regions[index-1]], datetime.now().strftime("%d.%m.%Y_%I:%M"))
+    return 'vhi_id_%02d_%s.csv'%(new_regions[regions[index-1]], datetime.now().strftime("%d.%m.%Y_%I.%M"))
 
 def download_files():
     os.mkdir(new_data_path)
@@ -108,7 +108,7 @@ def download_files():
             out.write(vhi_url.read())
         logging.info('File %s was created'%rename(index))
 
-download_files()
+# download_files()
 vhi_min_max(1, 2000)
 vhi_extreme(1, 10)
 vhi_moderate(2, 30)
