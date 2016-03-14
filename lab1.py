@@ -102,6 +102,6 @@ def download_files():
     print '==='
     logging.info('All regions are downloaded')
 
-# download_files()
+download_files()
 vhi_min_max(1, 2000)
 vhi_extreme_moderate(1, 10, 35)
