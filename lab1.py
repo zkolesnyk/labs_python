@@ -11,7 +11,7 @@ DATE = datetime.now().strftime("%d.%m.%Y_%I.%M")
 URL = 'http://www.star.nesdis.noaa.gov/smcd/emb/vci/gvix/G04/ts_L1/ByProvince/Mean/L1_Mean_UKR.R%02d.txt'
 PATH = os.path.dirname(os.path.abspath(__file__))
 
-new_data_path = pjoin(PATH, 'new_data')
+data_path = pjoin(PATH, 'data')
 
 logging.basicConfig(level=logging.INFO)
 
@@ -63,8 +63,8 @@ def create_frame(path):
     return data
 
 def vhi_min_max(path, year):
-    regex = pjoin(new_data_path, 'vhi_id_%s*'%new_regions[regions[path-1]])
-    df = create_frame(glob(regex)[0])
+    filename = pjoin(data_path, 'vhi_id_%s*'%new_regions[regions[path-1]])
+    df = create_frame(glob(filename)[0])
     df = df.loc[df['Year'] == year]['VegetationHealthIndex']
     print 'VegetationHealthIndex за %s рік'%year,
     print '(%s область):'%new_regions[regions[path-1]]
@@ -74,8 +74,8 @@ def vhi_min_max(path, year):
     print 'Min VegetationHealthIndex = %s'%df.min()
 
 def vhi_extreme_moderate(path, percent, rate):
-    regex = pjoin(new_data_path, 'vhi_id_%s*'%new_regions[regions[path-1]])
-    df = create_frame(glob(regex)[0])
+    filename = pjoin(data_path, 'vhi_id_%s*'%new_regions[regions[path-1]])
+    df = create_frame(glob(filename)[0])
     years = list(set(df.loc[df['AreaLess%s'%rate] > percent]['Year']))[1:]
     if rate == 15:
         print 'Роки з екстримальними посухами, які торкнулися більше %s'%percent,
@@ -89,14 +89,14 @@ def rename(index):
     return 'vhi_id_%02d_%s.csv'%(new_regions[regions[index-1]], DATE)
 
 def download_files():
-    os.mkdir(new_data_path)
+    os.mkdir(data_path)
     for index in xrange(1, 28):
         url = URL%index
         if index in [12, 20]:
             continue
         logging.info('Downloading: %s'%url)
         vhi_url = urlopen(url)
-        with open(pjoin(new_data_path, rename(index)), 'ws') as out:
+        with open(pjoin(data_path, rename(index)), 'ws') as out:
             out.write(vhi_url.read())
         logging.info('File %s was created'%rename(index))
     print '==='
