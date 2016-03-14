@@ -30,7 +30,7 @@ new_regions = {
 "Zakarpats'ka"      : 6,
 "Zaporizhzhya"      : 7,
 "Ivano-Frankivs'k"  : 8,
-"Kiev"              : 9,
+"Kiev City"         : 9,
 "Kirovohrad"        : 10,
 "Luhans'k"          : 11,
 "L'viv"             : 12,
