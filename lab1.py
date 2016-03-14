@@ -63,7 +63,8 @@ def create_frame(path):
     return data
 
 def vhi_min_max(path, year):
-    filename = pjoin(data_path, 'vhi_id_%s*'%new_regions[regions[path-1]])
+    filename = pjoin(data_path, 'vhi_id_%02d*'%new_regions[regions[path-1]])
+    print filename
     df = create_frame(glob(filename)[0])
     df = df.loc[df['Year'] == year]['VegetationHealthIndex']
     print 'VegetationHealthIndex за %s рік'%year,
@@ -74,7 +75,7 @@ def vhi_min_max(path, year):
     print 'Min VegetationHealthIndex = %s'%df.min()
 
 def vhi_extreme_moderate(path, percent, rate):
-    filename = pjoin(data_path, 'vhi_id_%s*'%new_regions[regions[path-1]])
+    filename = pjoin(data_path, 'vhi_id_%02d*'%new_regions[regions[path-1]])
     df = create_frame(glob(filename)[0])
     years = list(set(df.loc[df['AreaLess%s'%rate] > percent]['Year']))[1:]
     if rate == 15:
