@@ -73,20 +73,14 @@ def vhi_min_max(path, year):
     print 'Max VegetationHealthIndex = %s'%df.max()
     print 'Min VegetationHealthIndex = %s'%df.min()
 
-def vhi_extreme(path, percent):
+def vhi_extreme_moderate(path, percent, rate):
     regex = pjoin(new_data_path, 'vhi_id_%s*'%new_regions[regions[path-1]])
     df = create_frame(glob(regex)[0])
-    years = list(set(df.loc[df['AreaLess15'] > percent]['Year']))[1:]
-    print 'Роки з екстримальними посухами, які торкнулися більше %s'%percent,
-    print 'відсотків площі (%s область):'%new_regions[regions[path-1]]
-    for index, year in enumerate(years):
-        print '%s. %s'%(index + 1, year)
-
-def vhi_moderate(path, percent):
-    regex = pjoin(new_data_path, 'vhi_id_%s*'%new_regions[regions[path-1]])
-    df = create_frame(glob(regex)[0])
-    years = list(set(df.loc[df['AreaLess35'] > percent]['Year']))[1:]
-    print 'Роки з помірними посухами, які торкнулися більше %s'%percent,
+    years = list(set(df.loc[df['AreaLess%s'%rate] > percent]['Year']))[1:]
+    if rate == 15:
+        print 'Роки з екстримальними посухами, які торкнулися більше %s'%percent,
+    elif rate == 35:
+        print 'Роки з помірними посухами, які торкнулися більше %s'%percent,
     print 'відсотків площі (%s область):'%new_regions[regions[path-1]]
     for index, year in enumerate(years):
         print '%s. %s'%(index + 1, year)
@@ -110,5 +104,4 @@ def download_files():
 
 # download_files()
 vhi_min_max(1, 2000)
-vhi_extreme(1, 10)
-vhi_moderate(2, 30)
+vhi_extreme_moderate(1, 10, 35)
