@@ -64,9 +64,8 @@ def create_frame(path):
 
 def vhi_min_max(path, year):
     filename = pjoin(data_path, 'vhi_id_%02d*'%new_regions[regions[path-1]])
-    print filename
     df = create_frame(glob(filename)[0])
-    df = df.loc[df['Year'] == year]['VegetationHealthIndex']
+    df = df[df['Year'] == year]['VegetationHealthIndex']
     print 'VegetationHealthIndex за %s рік'%year,
     print '(%s область):'%new_regions[regions[path-1]]
     for number, week in enumerate(df):
@@ -77,7 +76,7 @@ def vhi_min_max(path, year):
 def vhi_extreme_moderate(path, percent, rate):
     filename = pjoin(data_path, 'vhi_id_%02d*'%new_regions[regions[path-1]])
     df = create_frame(glob(filename)[0])
-    years = list(set(df.loc[df['AreaLess%s'%rate] > percent]['Year']))[1:]
+    years = list(set(df[df['AreaLess%s'%rate] > percent]['Year']))
     if rate == 15:
         print 'Роки з екстримальними посухами, які торкнулися більше %s'%percent,
     elif rate == 35:
