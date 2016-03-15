@@ -92,7 +92,7 @@ def download_files():
     os.mkdir(data_path)
     for index in xrange(1, 28):
         url = URL%index
-        if index in [12, 20]:
+        if index in [11, 20]:
             continue
         logging.info('Downloading: %s'%url)
         vhi_url = urlopen(url)
