@@ -68,8 +68,8 @@ def vhi_min_max(path, year):
     df = df[df['Year'] == year]['VegetationHealthIndex']
     print 'VegetationHealthIndex за %s рік'%year,
     print '(%s область):'%new_regions[regions[path-1]]
-    for number, week in enumerate(df):
-        print '%s. %s'%(number + 1, week)
+    for number, vhi in enumerate(df):
+        print '%s. %s'%(number + 1, vhi)
     print 'Max VegetationHealthIndex = %s'%df.max()
     print 'Min VegetationHealthIndex = %s'%df.min()
 
