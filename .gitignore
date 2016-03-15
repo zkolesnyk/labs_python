@@ -2,3 +2,7 @@
 *.csv
 
 test.py
+
+*.pdf
+
+*.pages
