@@ -96,7 +96,7 @@ def download_files():
             continue
         logging.info('Downloading: %s'%url)
         vhi_url = urlopen(url)
-        with open(pjoin(data_path, rename(index)), 'ws') as out:
+        with open(pjoin(data_path, rename(index)), 'w') as out:
             out.write(vhi_url.read())
         logging.info('File %s was created'%rename(index))
     print '==='
