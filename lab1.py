@@ -6,6 +6,7 @@ from os.path import join as pjoin
 from glob import glob
 import logging
 import os
+from ggplot import *
 
 DATE = datetime.now().strftime("%d.%m.%Y_%I.%M")
 URL = 'http://www.star.nesdis.noaa.gov/smcd/emb/vci/gvix/G04/ts_L1/ByProvince/Mean/L1_Mean_UKR.R%02d.txt'
@@ -73,6 +74,12 @@ def vhi_min_max(path, year):
     print 'Max VegetationHealthIndex = %s'%df.max()
     print 'Min VegetationHealthIndex = %s'%df.min()
 
+def plot(path):
+    filename = pjoin(data_path, 'vhi_id_%02d*'%new_regions[regions[path-1]])
+    df = create_frame(glob(filename)[0])
+    df = df[(df['Week'] < 22) & (df['Week'] > 9)]
+    print ggplot(df, aes(x = 'Year', y='VegetationConditionIndex')) + geom_line()
+
 def vhi_extreme_moderate(path, percent, rate):
     filename = pjoin(data_path, 'vhi_id_%02d*'%new_regions[regions[path-1]])
     df = create_frame(glob(filename)[0])
@@ -103,5 +110,6 @@ def download_files():
     logging.info('All regions are downloaded')
 
 download_files()
-vhi_min_max(1, 2000)
-vhi_extreme_moderate(1, 10, 35)
+# vhi_min_max(1, 2000)
+# vhi_extreme_moderate(1, 10, 35)
+plot(8)
