@@ -77,8 +77,9 @@ def vhi_min_max(path, year):
 def plot(path):
     filename = pjoin(data_path, 'vhi_id_%02d*'%new_regions[regions[path-1]])
     df = create_frame(glob(filename)[0])
-    df = df[(df['Week'] < 22) & (df['Week'] > 9)]
-    print ggplot(df, aes(x = 'Year', y='VegetationConditionIndex')) + geom_line()
+    df = df[(df['Week'] < 22) & (df['Week'] > 9) & (df['VegetationHealthIndex'] > 0)]
+    print ggplot(df, aes(x = 'Year',y = 'VegetationHealthIndex')) +\
+    geom_line(color='blue')
 
 def vhi_extreme_moderate(path, percent, rate):
     filename = pjoin(data_path, 'vhi_id_%02d*'%new_regions[regions[path-1]])
